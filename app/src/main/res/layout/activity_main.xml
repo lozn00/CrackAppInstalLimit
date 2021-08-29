@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edit1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="28dp"
+        android:hint="应用白名单"
+        android:nextFocusLeft="@id/btn_copy_from_macket"
+        android:nextFocusRight="@id/save"
+        android:nextFocusUp="@id/btn_copy_from_macket"
+        android:nextFocusDown="@id/save" />
+
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:nextFocusLeft="@id/edit1"
+        android:nextFocusRight="@id/edit_package"
+        android:nextFocusUp="@id/edit1"
+        android:nextFocusDown="@id/edit_package"
+        android:onClick="Ok"
+        android:text="@string/save" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    >
+
+    <EditText
+        android:id="@+id/edit_package"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="输入包名"
+        android:nextFocusLeft="@id/save"
+        android:nextFocusRight="@id/btn_select_app"
+        android:nextFocusUp="@id/save"
+        android:nextFocusDown="@id/btn_select_app"
+        />
+    <Button
+        android:id="@+id/btn_select_app"
+        android:layout_width="wrap_content"
+        android:nextFocusLeft="@id/edit_package"
+        android:nextFocusRight="@id/btn_add"
+        android:nextFocusUp="@id/edit_package"
+        android:nextFocusDown="@id/btn_add"
+        android:text="选择应用"
+        android:layout_marginRight="30dp"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:nextFocusLeft="@id/edit_package"
+            android:nextFocusUp="@id/edit_package"
+            android:nextFocusDown="@id/btn_delete"
+            android:text="添加" />
+
+
+        <Button
+
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:nextFocusUp="@id/btn_add"
+            android:nextFocusDown="@id/btn_copy_from_macket"
+
+            android:text="@string/del" />
+
+        <Button
+
+            android:id="@+id/btn_copy_from_macket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="18dp"
+            android:nextFocusRight="@id/edit1"
+            android:nextFocusUp="@id/btn_delete"
+            android:nextFocusDown="@id/edit1"
+
+            android:text="@string/csc_copy" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:minLines="3"
+        android:text="@string/about"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+</LinearLayout>
