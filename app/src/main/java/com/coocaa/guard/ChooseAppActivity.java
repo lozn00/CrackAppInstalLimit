@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,7 +44,7 @@ public class ChooseAppActivity extends Activity {
         List<ApplicationInfo> packageinfo = this.getPackageManager().getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);// GET_UNINSTALLED_PACKAGES代表已删除，但还有安装目录的
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFERENCE_NAME, Context.MODE_WORLD_READABLE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.PREFERENCE_NAME, Build.VERSION.SDK_INT>=24?Context.MODE_PRIVATE:Context.MODE_WORLD_READABLE);
         JSONArray array = JSON.parseArray(sharedPreferences.getString("installer_whitelist", "[]"));
        packagesWrite=new HashMap<>();
         for (int i = 0; i < array.size(); i++) {

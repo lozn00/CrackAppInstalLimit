@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,17 +33,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edit1 = findViewById(R.id.edit1);
         edit_package = findViewById(R.id.edit_package);
         try {
-            sharedPreferences = getSharedPreferences(PREFERENCE_NAME, Context.MODE_WORLD_READABLE);
+            sharedPreferences = getSharedPreferences(PREFERENCE_NAME, getMode());
             edit1.setText(sharedPreferences.getString("installer_whitelist", JsonTest));
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if(getMode()==Context.MODE_PRIVATE){
+            Toast.makeText(this, "当前操作系统版本过高,安装器可能无法读取到本配置文件,SDKINT:"+Build.VERSION.SDK_INT+",期望的版本是小于24", Toast.LENGTH_SHORT).show();
+        }
         findViewById(R.id.btn_add).setOnClickListener(this);
         findViewById(R.id.btn_delete).setOnClickListener(this);
         findViewById(R.id.btn_select_app).setOnClickListener(this);
         findViewById(R.id.btn_copy_from_macket).setOnClickListener(this);
+    }
+
+    private int getMode() {
+        return Build.VERSION.SDK_INT >= 24 ? Context.MODE_PRIVATE : Context.MODE_WORLD_READABLE;
     }
 
     public void Ok(View view) {
@@ -56,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } catch (Exception e) {
 
-            Toast.makeText(this, "！EROOR 保存错误！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "！EROOR 保存错误！"+e.getMessage(), Toast.LENGTH_SHORT).show();
 
             e.printStackTrace();
         }
@@ -143,9 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return;
 
                 }
-
-
-                edit1.setText(ctx.getSharedPreferences(PREFERENCE_NAME, Context.MODE_WORLD_READABLE).getString("installer_whitelist", "Null"));
+                edit1.setText(ctx.getSharedPreferences(PREFERENCE_NAME, getMode()).getString("installer_whitelist", "Null"));
                 Toast.makeText(this, "请点击保存", Toast.LENGTH_LONG).show();
             }
             break;
